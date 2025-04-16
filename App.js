@@ -1,20 +1,60 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { ProductProvider } from './src/data/ProductsContext';
+import { CartProvider } from './src/data/CartContext';
+import MainTabNavigation from './src/navigation/Navigator';
+import SignupScreen from './src/screens/SignupScreen';
+import Toast from 'react-native-toast-message';
 
-export default function App() {
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+const RootNavigator = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator initialRouteName="Main">
+      <Stack.Screen
+        name="SignupScreen"
+        component={SignupScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Main"
+        component={MainTabNavigation}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const toastConfig = {
+//   success: (internalState) => (
+//     <View style={{ width: 300, backgroundColor: 'green', padding: 10 }}>
+//       <Text style={{ color: 'white' }}>{internalState.text1}</Text>
+//       <Text style={{ color: 'white' }}>{internalState.text2}</Text>
+//     </View>
+//   ),
+//   error: (internalState) => (
+//     <View style={{ width: 300, backgroundColor: 'red', padding: 10 }}>
+//       <Text style={{ color: 'white' }}>{internalState.text1}</Text>
+//       <Text style={{ color: 'white' }}>{internalState.text2}</Text>
+//     </View>
+//   ),
+// };
+
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <ProductProvider>
+        <CartProvider>
+          <RootNavigator />
+          <Toast  />
+        </CartProvider>
+      </ProductProvider>
+    </NavigationContainer>
+  );
+};
+
+export default App;
