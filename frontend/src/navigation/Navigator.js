@@ -10,14 +10,14 @@ import HomeScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
 import CartScreen from "../screens/CartScreen";
 import ProductDetailScreen from "../screens/ProductDetailScreen";
-import SignupScreen from "../screens/SignupScreen"; // Import Signup
-import LoginScreen from "../screens/LoginScreen"; // Import Login
+import SignupScreen from "../screens/SignupScreen"; 
+import LoginScreen from "../screens/LoginScreen"; 
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-const ActiveColor = "#000000"; // black
-const inActiveColor = "#C0C0C0"; // inactive gray
+const ActiveColor = "#000000"; 
+const inActiveColor = "#C0C0C0"; 
 
 const MainTabNavigation = () => {
   return (
@@ -98,7 +98,7 @@ const LoginToDetails = () => {
   );
 };
 
-// Wrap everything inside a stack to include Signup as the first screen
+
 const RootNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="SignupScreen">
@@ -109,7 +109,7 @@ const RootNavigator = () => {
       />
       <Stack.Screen
         name="LoginScreen"
-        component={LoginScreen} // this is the nested stack
+        component={LoginScreen} 
         options={{ headerShown: false }}
       />
       <Stack.Screen
